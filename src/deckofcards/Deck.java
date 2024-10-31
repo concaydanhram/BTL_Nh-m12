@@ -10,4 +10,6 @@ public class Deck extends Card {
     Card A_D = new Card(1, 3, 14);
     Card A_C = new Card(1, 2, 14);
     Card A_S = new Card(1, 1, 14);
+
+    Card H_2 = new Card(2, 4, 2);
 }
