@@ -19,29 +19,24 @@ public class Card {
         this.rank = rank;
     }
 
-
     // Getter and setter
     public void setCardNumber(int cardNumber) {
         this.cardNumber = cardNumber;
     }
 
     // Đổi rank thành Int trả về rank của quân bài
-    public int getRank()        {
+    public int getRank(){
         if ("AJQK".contains(rank)) {
             if ( rank.equals("A"))
                 return 1;
-            else return 10;
+            return 10;
         }
-        else return Integer.parseInt(rank);
+        return Integer.parseInt(rank);
     }
-
 
     // In ra lá bài
     @Override
-    public String toString() {
-        return "[cardNumber= " + cardNumber +
-                ", suit= '" + suit + '\'' +
-                ", rank= '" + rank + ']' + "\n"
-                ;
+    public String toString(){
+        return "[cardNumber= " + cardNumber + ", suit= '" + suit + '\'' + ", rank= '" + rank + ']' + "\n";
     }
 }
