@@ -1,34 +1,47 @@
 package deckofcards;
-import cardsimage.*;
 
 public class Card {
     private int cardNumber;
-    private int suit;
-    private int rank;
+    private String suit;
+    private String rank;
 
+//      ♦ Diamonds : Chất rô
+//      ♥ Hearts : Chất cơ
+//      ♣ Clubs : Chất nhép
+//      ♠ Spade : Chất bích
+
+    // Constructor
     public Card(){
     }
-    public Card(int cardNumber, int suit, int rank) {
-        this.cardNumber = cardNumber;
+
+    public Card(String suit, String rank) {
         this.suit = suit;
         this.rank = rank;
     }
-    public int getCardNumber() {
-        return cardNumber;
-    }
+
+
+    // Getter and setter
     public void setCardNumber(int cardNumber) {
         this.cardNumber = cardNumber;
     }
-    public int getSuit() {
-        return suit;
+
+    // Đổi rank thành Int trả về rank của quân bài
+    public int getRank()        {
+        if ("AJQK".contains(rank)) {
+            if ( rank.equals("A"))
+                return 1;
+            else return 10;
+        }
+        else return Integer.parseInt(rank);
     }
-    public void setSuit(int suit) {
-        this.suit = suit;
-    }
-    public int getRank() {
-        return rank;
-    }
-    public void setRank(int rank) {
-        this.rank = rank;
+
+
+    // In ra lá bài
+    @Override
+    public String toString() {
+        return "[cardNumber= " + cardNumber +
+                ", suit= '" + suit + '\'' +
+                ", rank= '" + rank + ']' + "\n"
+                ;
     }
 }
