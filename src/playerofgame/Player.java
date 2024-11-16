@@ -43,6 +43,6 @@ public class Player{
 
     @Override
     public String toString(){
-        return "nameOfPlayer='" + nameOfPlayer + '\'' + ", scoreOfPlayer=" + scoreOfPlayer + "\n" + ", cardOfPlayer=" + cardOfPlayer + '}' + "\n";
+        return "nameOfPlayer='" + nameOfPlayer + '\'' + ", scoreOfPlayer=" + (scoreOfPlayer%10) + "\n" + ", cardOfPlayer=" + cardOfPlayer + '}' + "\n";
     }
 }

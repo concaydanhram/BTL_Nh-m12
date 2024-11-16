@@ -29,7 +29,7 @@ public class Card {
         if ("AJQK".contains(rank)) {
             if ( rank.equals("A"))
                 return 1;
-            return 10;
+            return 0;
         }
         return Integer.parseInt(rank);
     }

@@ -1,11 +1,11 @@
 package deckofcards;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Deck  {
+
     private ArrayList<Card> deck;
-    private Random random = new Random();
 
     // Constructor
     public Deck() {
@@ -19,21 +19,23 @@ public class Deck  {
             }
         }
 
-        shuffleDeck(); // Xóa trộn bộ bài
+        shuffleDeck(); // Xáo trộn bộ bài
     }
 
 
     // Phương thức xáo trộn bộ bài
     public void shuffleDeck() {
-        Collections.shuffle(deck);
-        for (int i = 0; i < deck.size(); i++) {
-            deck.get(i).setCardNumber(i+1);
+        for (int i = deck.size() - 1; i > 0; i--) {
+            int j = ThreadLocalRandom.current().nextInt(i + 1); // Sử dụng ThreadLocalRandom
+            Card temp = deck.get(i);
+            deck.set(i, deck.get(j));
+            deck.set(j, temp);
         }
 
-       System.out.println("Affter shuffleDeck");// In ra bộ bài sau khi xáo trộn
-       System.out.println(deck);
+        for (int i = 0; i < deck.size(); i++) {
+            deck.get(i).setCardNumber(i + 1);
+        }
     }
-
     // Lấy ra 1 quân bìa ở trên cùng bộ bài
     public Card removeCard() {
         return  deck.remove(deck.size() - 1);
