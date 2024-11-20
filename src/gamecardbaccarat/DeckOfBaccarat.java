@@ -5,8 +5,7 @@ import deckofcards.Deck;
 import java.util.ArrayList;
 
 public class DeckOfBaccarat extends Deck{
-    @Override
-    public void Deck(){
+    public DeckOfBaccarat(){
         this.deck = new ArrayList<Card>();
         String[] suit = {"C", "D", "H", "S"};
         String[] rank = {"A", "2", "3", "4", "5", "6", "7", "8", "9"};
