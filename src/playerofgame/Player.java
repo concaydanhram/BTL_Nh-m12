@@ -27,8 +27,7 @@ public class Player{
         cardsInHand.add(card);
     }
 
-    @Override
-    public String toString(){
-        return "nameOfPlayer='" + nameOfPlayer + '\'' + ", cardOfPlayer=" + cardsInHand + '}' + "\n";
+    public void printCardInHand(){
+        System.out.println(nameOfPlayer + "'s cards in hand: " + cardsInHand);
     }
 }
