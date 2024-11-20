@@ -11,14 +11,15 @@ public class Baccarat {
     private ArrayList<PlayerBaccarat> playersBaccarat = new ArrayList<PlayerBaccarat>();
     private Scanner scanner = new Scanner(System.in);
 
-    public void setNumberOfPlayer(int numberOfPersons) {
+    public void setNumberOfPlayer() {
+        int numberOfPersons = scanner.nextInt();
         if(numberOfPersons < 2) return;
         this.numberOfPlayer = numberOfPersons;
     }
 
     public void addPlayer(){
         for(int i = 0; i < numberOfPlayer; i++){
-            String name = "Bien";
+            String name = scanner.next();
             ArrayList<Card> ListCard = new ArrayList<Card>();
             PlayerBaccarat person = new PlayerBaccarat();
             person.setNameOfPlayer(name);
@@ -29,7 +30,7 @@ public class Baccarat {
 
     public void printCardsOfPlayer(){
         for(int i = 0; i < numberOfPlayer; i++){
-            System.out.println(playersBaccarat.get(i).getNameOfPlayer());
+            playersBaccarat.get(i).printCardInHand();
         }
     }
 
