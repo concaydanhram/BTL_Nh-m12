@@ -1,44 +1,42 @@
 package gamecardbaccarat;
 
+import deckofcards.Card;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Baccarat {
     public int numberOfPlayer;
     private DeckOfBaccarat deckOfBaccarat = new DeckOfBaccarat();
-    private ArrayList<PlayerBaccarat> playersBaccarat;
+    private ArrayList<PlayerBaccarat> playersBaccarat = new ArrayList<PlayerBaccarat>();
     private Scanner scanner = new Scanner(System.in);
 
-    public Baccarat() {
-    }
-
-    public void setNumberOfPlayer() {
-        Scanner scanner = new Scanner(System.in);
-        int numberOfPersons = Integer.parseInt(scanner.nextLine());
-        scanner.close();
+    public void setNumberOfPlayer(int numberOfPersons) {
         if(numberOfPersons < 2) return;
         this.numberOfPlayer = numberOfPersons;
     }
 
     public void addPlayer(){
         for(int i = 0; i < numberOfPlayer; i++){
-            String name = scanner.nextLine();
+            String name = "Bien";
+            ArrayList<Card> ListCard = new ArrayList<Card>();
             PlayerBaccarat person = new PlayerBaccarat();
             person.setNameOfPlayer(name);
+            person.setCardsInHand(ListCard);
             playersBaccarat.add(person);
         }
     }
 
     public void printCardsOfPlayer(){
         for(int i = 0; i < numberOfPlayer; i++){
-            playersBaccarat.get(i).toString();
+            System.out.println(playersBaccarat.get(i).getNameOfPlayer());
         }
     }
 
     public void dealCard(){
         deckOfBaccarat.shuffleDeck();
         for(int i = 0; i < 4; ++i){
-            for(int j = 0; j < numberOfPlayer; j++){
+            for(int j = 0; j < numberOfPlayer; ++j){
                 playersBaccarat.get(j).addCard(deckOfBaccarat.getCardTop());
             }
         }

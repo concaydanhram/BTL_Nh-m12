@@ -4,22 +4,23 @@ import deckofcards.Card;
 import java.util.ArrayList;
 
 public class Player{
-    protected String nameOfPlayer;
+    public String nameOfPlayer;
     protected ArrayList<Card> cardsInHand  = new ArrayList<Card>();
 
-    public Player(){
-    }
-
-    public String getNameOfPlayer(){
+    public String getNameOfPlayer() {
         return nameOfPlayer;
     }
 
-    public void setNameOfPlayer(String nameOfPlayer){
+    public void setNameOfPlayer(String nameOfPlayer) {
         this.nameOfPlayer = nameOfPlayer;
     }
 
-    public ArrayList<Card> getCardOfPlayer(){
+    public ArrayList<Card> getCardsInHand() {
         return cardsInHand;
+    }
+
+    public void setCardsInHand(ArrayList<Card> cardsInHand) {
+        this.cardsInHand = cardsInHand;
     }
 
     public void addCard(Card card){
@@ -28,6 +29,6 @@ public class Player{
 
     @Override
     public String toString(){
-        return "nameOfPlayer='" + nameOfPlayer + '\'' + ", scoreOfPlayer=" + ", cardOfPlayer=" + cardsInHand + '}' + "\n";
+        return "nameOfPlayer='" + nameOfPlayer + '\'' + ", cardOfPlayer=" + cardsInHand + '}' + "\n";
     }
 }

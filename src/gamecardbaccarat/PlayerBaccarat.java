@@ -1,22 +1,15 @@
 package gamecardbaccarat;
 
+import deckofcards.Card;
 import playerofgame.Player;
 
+import java.util.ArrayList;
+
 public class PlayerBaccarat extends Player {
-    private int scoreOfPlayer = 0;
-
-    private void addScore() {
-        for (int i = 0; i < cardsInHand.size(); ++i)
-            this.scoreOfPlayer += cardsInHand.get(i).getRank();
-        scoreOfPlayer %= 10;
-    };
-
     public int getScoreOfPlayer() {
-        return scoreOfPlayer;
-    }
-
-    @Override
-    public String toString(){
-        return "nameOfPlayer='" + nameOfPlayer + '\'' + ", scoreOfPlayer=" + scoreOfPlayer + "\n" + ", cardOfPlayer=" + cardsInHand + '}' + "\n";
+        int scoreOfPlayer = 0;
+        for (int i = 0; i < cardsInHand.size(); ++i)
+            scoreOfPlayer += cardsInHand.get(i).getRank();
+        return scoreOfPlayer%10;
     }
 }
