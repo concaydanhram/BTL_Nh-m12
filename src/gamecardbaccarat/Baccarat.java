@@ -12,18 +12,33 @@ public class Baccarat {
     private Scanner scanner = new Scanner(System.in);
 
     public void setNumberOfPlayer(int numberOfPersons) {
-        if(numberOfPersons < 2) return;
-        this.numberOfPlayer = numberOfPersons;
+        System.out.print("Nhập số lượng người chơi (ít nhất 2 người): ");
+        numberOfPersons = scanner.nextInt();
+        scanner.nextLine(); // Đọc bỏ dòng new line sau khi nhập số nguyên
+
+        if (numberOfPersons < 2) {
+            System.out.println("Số lượng người chơi phải lớn hơn hoặc bằng 2.");
+            return;
+        }
+        this.numberOfPlayer = numberOfPersons; // Gán giá trị cho số người chơi
     }
 
     public void addPlayer(){
-        for(int i = 0; i < numberOfPlayer; i++){
-            String name = "Bien";
-            ArrayList<Card> ListCard = new ArrayList<Card>();
-            PlayerBaccarat person = new PlayerBaccarat();
-            person.setNameOfPlayer(name);
-            person.setCardsInHand(ListCard);
-            playersBaccarat.add(person);
+        // Duyệt qua từng người chơi và yêu cầu nhập tên
+        for (int i = 0; i < numberOfPlayer; i++) {
+            System.out.print("Nhập tên cho người chơi " + (i + 1) + ": ");
+            String name = scanner.nextLine();
+
+            // Khởi tạo danh sách thẻ bài cho người chơi
+            ArrayList<Card> listCard = new ArrayList<Card>();
+
+            // Khởi tạo đối tượng người chơi và gán tên và danh sách thẻ bài
+            PlayerBaccarat player = new PlayerBaccarat();
+            player.setNameOfPlayer(name);
+            player.setCardsInHand(listCard);
+
+            // Thêm người chơi vào danh sách
+            playersBaccarat.add(player);
         }
     }
 
@@ -52,6 +67,6 @@ public class Baccarat {
                 index = i;
             }
         }
-        System.out.println(playersBaccarat.get(index).getNameOfPlayer() + " wins!");
+        System.out.println(playersBaccarat.get(index).getNameOfPlayer() + " chiến thắng với " + maxPoint + " điểm!");
     }
 }
