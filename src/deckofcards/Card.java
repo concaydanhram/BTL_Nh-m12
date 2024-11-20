@@ -1,7 +1,6 @@
 package deckofcards;
 
 public class Card {
-    private int cardNumber;
     private String suit;
     private String rank;
 
@@ -20,23 +19,23 @@ public class Card {
     }
 
     // Getter and setter
-    public void setCardNumber(int cardNumber) {
-        this.cardNumber = cardNumber;
-    }
 
     // Đổi rank thành Int trả về rank của quân bài
     public int getRank(){
-        if ("AJQK".contains(rank)) {
-            if ( rank.equals("A"))
-                return 1;
-            return 0;
-        }
+        if(this.rank.equals("A"))
+            return 1;
+        if(this.rank.equals("J"))
+            return 11;
+        if(this.rank.equals("Q"))
+            return 12;
+        if(this.rank.equals("K"))
+            return 13;
         return Integer.parseInt(rank);
     }
 
     // In ra lá bài
     @Override
     public String toString(){
-        return "[cardNumber= " + cardNumber + ", suit= '" + suit + '\'' + ", rank= '" + rank + ']' + "\n";
+        return "suit= '" + suit + '\'' + ", rank= '" + rank + ']' + "\n";
     }
 }

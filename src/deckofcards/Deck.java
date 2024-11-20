@@ -3,9 +3,9 @@ package deckofcards;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Deck  {
+public abstract class Deck  {
 
-    private ArrayList<Card> deck;
+    protected ArrayList<Card> deck;
 
     // Constructor
     public Deck() {
@@ -18,8 +18,6 @@ public class Deck  {
                 deck.add(card);
             }
         }
-
-        shuffleDeck(); // Xáo trộn bộ bài
     }
 
 
@@ -31,13 +29,11 @@ public class Deck  {
             deck.set(i, deck.get(j));
             deck.set(j, temp);
         }
-
-        for (int i = 0; i < deck.size(); i++) {
-            deck.get(i).setCardNumber(i + 1);
-        }
     }
     // Lấy ra 1 quân bìa ở trên cùng bộ bài
-    public Card removeCard() {
+    public Card getCardTop() {
         return  deck.remove(deck.size() - 1);
     }
+
+    public abstract void Deck();
 }

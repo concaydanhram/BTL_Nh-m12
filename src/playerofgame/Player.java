@@ -1,19 +1,13 @@
 package playerofgame;
 
 import deckofcards.Card;
-
 import java.util.ArrayList;
 
 public class Player{
-    private String nameOfPlayer;
-    private int scoreOfPlayer = 0;
-    private ArrayList<Card> cardOfPlayer  = new ArrayList<Card>();
+    protected String nameOfPlayer;
+    protected ArrayList<Card> cardsInHand  = new ArrayList<Card>();
 
     public Player(){
-    }
-
-    public Player(String nameOfPlayer){
-        this.nameOfPlayer = nameOfPlayer;
     }
 
     public String getNameOfPlayer(){
@@ -24,25 +18,16 @@ public class Player{
         this.nameOfPlayer = nameOfPlayer;
     }
 
-    public int getScoreOfPlayer(){
-        return scoreOfPlayer;
-    }
-
-    public void addScoreOfPlayer(int rankOfCard){
-        this.scoreOfPlayer +=rankOfCard;
-    }
-
     public ArrayList<Card> getCardOfPlayer(){
-        return cardOfPlayer;
+        return cardsInHand;
     }
 
-    public void addCardOfPlayer(Card card){
-        cardOfPlayer.add(card);
-        addScoreOfPlayer(card.getRank());
+    public void addCard(Card card){
+        cardsInHand.add(card);
     }
 
     @Override
     public String toString(){
-        return "nameOfPlayer='" + nameOfPlayer + '\'' + ", scoreOfPlayer=" + (scoreOfPlayer%10) + "\n" + ", cardOfPlayer=" + cardOfPlayer + '}' + "\n";
+        return "nameOfPlayer='" + nameOfPlayer + '\'' + ", scoreOfPlayer=" + ", cardOfPlayer=" + cardsInHand + '}' + "\n";
     }
 }
