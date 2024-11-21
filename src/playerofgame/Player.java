@@ -27,7 +27,14 @@ public class Player{
         cardsInHand.add(card);
     }
 
+    public void dropCard(Card card){
+        cardsInHand.remove(card);
+    }
+
     public void printCardInHand(){
-        System.out.println(nameOfPlayer + "'s cards in hand: " + cardsInHand);
+        System.out.println(nameOfPlayer + "'s cards in hand:");
+        for (Card card : cardsInHand) {
+            System.out.println(card.toString());
+        }
     }
 }

@@ -1,7 +1,6 @@
 package gamecardbaccarat;
 
 import deckofcards.Card;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,7 +14,6 @@ public class Baccarat {
         setNumberOfPlayer();
         addPlayer();
         dealCard();
-        printCardsOfPlayer();
         winnerBaccarat();
     }
 
@@ -23,7 +21,7 @@ public class Baccarat {
     public void setNumberOfPlayer() {
         int numberOfPersons ;
         do {
-            System.out.println("Hay nhap vao so luong nguoi choi: ");
+            System.out.println("Số lượng người chơi: ");
             numberOfPersons = scanner.nextInt();
             scanner.nextLine();
         }while (numberOfPersons < 2 );
@@ -33,7 +31,7 @@ public class Baccarat {
     // Thêm số người chơi vào game
     public void addPlayer(){
         for(int i = 0; i < numberOfPlayer; i++){
-            System.out.println("Nhap ten nguoi choi " + (i + 1) + ": ");
+            System.out.println("Người chơi thứ " + (i + 1) + ": ");
             String name = scanner.nextLine();  // Nhập tên người chơi
             PlayerBaccarat person = new PlayerBaccarat();
             person.setNameOfPlayer(name);
@@ -45,21 +43,11 @@ public class Baccarat {
     public void dealCard(){
         deckOfBaccarat.shuffleDeck();
         for(int i = 0; i < 3; ++i){
+            System.out.println("Chia bài lượt thứ " + (i + 1) + ": ");
             for(int j = 0; j < numberOfPlayer; ++j){
                 playersBaccarat.get(j).addCard(deckOfBaccarat.getCardTop());
+                playersBaccarat.get(j).printCardInHand();
             }
-        }
-    }
-
-    // In ra lá bài trên tay từng người chơi
-    public void printCardsOfPlayer() {
-        for (int i = 0; i < numberOfPlayer; i++) {
-            PlayerBaccarat player = playersBaccarat.get(i);
-            player.printCardInHand();
-
-            // Hiển thị tổng điểm của người chơi
-            System.out.println("Total points: " + (player.getScoreOfPlayer()));
-
         }
     }
 
@@ -67,9 +55,9 @@ public class Baccarat {
     public void winnerBaccarat(){
         int index = 0;
         int maxPoint = 0;
-        for(int i = 0; i < numberOfPlayer; i++){
+        for(int i = 0; i < numberOfPlayer; i++) {
             int point = playersBaccarat.get(i).getScoreOfPlayer();
-            if(point > maxPoint){
+            if (point > maxPoint) {
                 maxPoint = point;
                 index = i;
             }
