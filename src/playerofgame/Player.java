@@ -7,6 +7,9 @@ public class Player{
     public String nameOfPlayer;
     protected ArrayList<Card> cardsInHand  = new ArrayList<Card>();
 
+    public Player(String nameOfPlayer){
+    }
+
     public String getNameOfPlayer() {
         return nameOfPlayer;
     }

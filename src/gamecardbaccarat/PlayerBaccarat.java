@@ -5,6 +5,24 @@ import playerofgame.Player;
 
 public class PlayerBaccarat extends Player {
     private int scoreOfPlayer ;
+    private int moneyPlayer;
+
+    public PlayerBaccarat() {
+        super("BOT");
+        this.moneyPlayer = 0;
+    }
+
+    public int getMoneyPlayer() {
+        return moneyPlayer;
+    }
+
+    public void setMoneyPlayer(int moneyPlayer) {
+        this.moneyPlayer = moneyPlayer;
+    }
+
+    public void addMoneyPlayer(int moneyPlayer) {
+        this.moneyPlayer += moneyPlayer;
+    }
 
     public void addCard(Card card){
         cardsInHand.add(card);
@@ -35,6 +53,10 @@ public class PlayerBaccarat extends Player {
             }
         }
         return card;
+    }
+
+    public void printPlayer(){
+        System.out.println("Player " + this.getNameOfPlayer() + " has " + moneyPlayer + " $");
     }
 
     // Tính điểm của người chơi
