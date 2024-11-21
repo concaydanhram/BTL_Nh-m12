@@ -26,16 +26,17 @@ public class PlayerBaccarat extends Player {
 
     public void addCard(Card card){
         cardsInHand.add(card);
-        this.scoreOfPlayer += card.getRank();
+        if(card.getRank() == 14) this.scoreOfPlayer += 11;
+        else this.scoreOfPlayer += card.getRank();
         while (this.scoreOfPlayer > 10)
             this.scoreOfPlayer -= 10;
     }
 
     private int reSuit(Card card){
-        if(card.getSuit() == 4) return 3;
-        if(card.getSuit() == 3) return 4;
-        if(card.getSuit() == 2) return 1;
-        return 2;
+        if(card.getSuit().equals("D")) return 4;
+        if(card.getSuit().equals("H")) return 3;
+        if(card.getSuit().equals("S")) return 2;
+        return 1;
     }
 
     protected boolean compareCard(Card card1, Card card2){

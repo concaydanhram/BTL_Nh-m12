@@ -37,7 +37,7 @@ public class Player{
     public void printCardInHand(){
         System.out.println(nameOfPlayer + "'s cards in hand:");
         for (Card card : cardsInHand) {
-            System.out.println(card.toString());
+            System.out.print(card.toString() + " ");
         }
     }
 }

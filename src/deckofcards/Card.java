@@ -20,11 +20,8 @@ public class Card {
 
     // Getter and setter
 
-    public int getSuit() {
-        if(this.suit.equals("H")) return 4;
-        if(this.suit.equals("D")) return 3;
-        if(this.suit.equals("C")) return 2;
-        return 1;
+    public String getSuit() {
+        return suit;
     }
 
     // Đổi rank thành Int trả về rank của quân bài
