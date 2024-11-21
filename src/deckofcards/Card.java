@@ -30,7 +30,7 @@ public class Card {
     // Đổi rank thành Int trả về rank của quân bài
     public int getRank(){
         if(this.rank.equals("A"))
-            return 1;
+            return 14;
         if(this.rank.equals("J"))
             return 11;
         if(this.rank.equals("Q"))

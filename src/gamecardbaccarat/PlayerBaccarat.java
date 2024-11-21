@@ -8,7 +8,7 @@ public class PlayerBaccarat extends Player {
     private int moneyPlayer;
 
     public PlayerBaccarat() {
-        super("BOT");
+        super("Player");
         this.moneyPlayer = 0;
     }
 
