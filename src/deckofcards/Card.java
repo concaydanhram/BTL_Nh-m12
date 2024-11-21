@@ -36,6 +36,6 @@ public class Card {
     // In ra lá bài
     @Override
     public String toString(){
-        return "suit= '" + suit + '\'' + ", rank= '" + rank + ']' + "\n";
+        return  rank + '-' + suit;
     }
 }

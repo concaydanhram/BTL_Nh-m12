@@ -3,7 +3,7 @@ package deckofcards;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class Deck {
+public class Deck {
     protected ArrayList<Card> deck;
 
     // Constructor

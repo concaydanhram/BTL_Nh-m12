@@ -6,10 +6,17 @@ import playerofgame.Player;
 import java.util.ArrayList;
 
 public class PlayerBaccarat extends Player {
-    public int getScoreOfPlayer() {
-        int scoreOfPlayer = 0;
-        for (int i = 0; i < cardsInHand.size(); ++i)
-            scoreOfPlayer += cardsInHand.get(i).getRank();
-        return scoreOfPlayer%10;
+    private int scoreOfPlayer ;
+
+    public void addCard(Card card){
+        cardsInHand.add(card);
+        this.scoreOfPlayer += card.getRank();
+    }
+    // Tính điểm của người chơi
+/*    public void addScoreOfPlayer(Card card) {
+        this.scoreOfPlayer += card.getRank();
+    }*/
+    public int getScoreOfPlayer(){
+        return scoreOfPlayer;
     }
 }
