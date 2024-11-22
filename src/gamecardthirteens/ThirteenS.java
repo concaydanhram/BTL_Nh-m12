@@ -35,7 +35,8 @@ public class ThirteenS extends RulesOfThirteenS {
         for(int i = 0; i < 13; ++i){
             System.out.println("Deal cards in turn " + (i + 1) + ": ");
             for(int j = 0; j < numberOfPlayer; ++j){
-                playersThirteenS.get(j).addCard(deckOfThirteenS.getCardTop());
+                CardOfThirteenS card = (CardOfThirteenS) deckOfThirteenS.getCardTop();
+                playersThirteenS.get(j).addCard(card);
                 playersThirteenS.get(j).printCardInHand();
                 System.out.println();
             }

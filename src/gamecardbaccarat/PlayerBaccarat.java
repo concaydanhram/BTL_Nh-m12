@@ -24,33 +24,26 @@ public class PlayerBaccarat extends Player {
         this.moneyPlayer += moneyPlayer;
     }
 
-    public void addCard(Card card){
+    public void addCard(CardOfBaccarat card){
         cardsInHand.add(card);
-        if(card.getRank() == 14) this.scoreOfPlayer += 11;
-        else this.scoreOfPlayer += card.getRank();
+        this.scoreOfPlayer += card.getRank();
         while (this.scoreOfPlayer > 10)
             this.scoreOfPlayer -= 10;
     }
 
-    private int reSuit(Card card){
-        if(card.getSuit().equals("D")) return 4;
-        if(card.getSuit().equals("H")) return 3;
-        if(card.getSuit().equals("S")) return 2;
-        return 1;
-    }
-
-    protected boolean compareCard(Card card1, Card card2){
-        if(reSuit(card1) > reSuit(card2)) return true;
-        if(reSuit(card1) < reSuit(card2)) return false;
+    protected boolean compareCard(CardOfBaccarat card1, CardOfBaccarat card2){
+        if(card1.getSuit() > card2.getSuit()) return true;
+        if(card1.getSuit() < card2.getSuit()) return false;
         if(card1.getRank() > card2.getRank()) return true;
         return false;
     }
 
-    public Card biggestCardInHand(){
-        Card card = cardsInHand.get(0);
+    public CardOfBaccarat biggestCardInHand(){
+        CardOfBaccarat card = (CardOfBaccarat) cardsInHand.get(0);
         for(int i = 1; i < cardsInHand.size(); i++){
-            if(compareCard(cardsInHand.get(i), card)){
-                card = cardsInHand.get(i);
+            CardOfBaccarat cardinhand = (CardOfBaccarat) cardsInHand.get(i);
+            if(compareCard(cardinhand, card)){
+                card = cardinhand;
             }
         }
         return card;
@@ -62,7 +55,7 @@ public class PlayerBaccarat extends Player {
 
     // Tính điểm của người chơi
     public int getScoreOfPlayer(){
-        Card biggestCard = biggestCardInHand();
-        return 100 * scoreOfPlayer + 10 * reSuit(biggestCard) + biggestCard.getRank();
+        CardOfBaccarat biggestCard = biggestCardInHand();
+        return 100 * scoreOfPlayer + 10 * biggestCard.getSuit() + biggestCard.getRank();
     }
 }

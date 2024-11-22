@@ -3,9 +3,9 @@ package playerofgame;
 import deckofcards.Card;
 import java.util.ArrayList;
 
-public class Player{
+public class Player <T> {
     public String nameOfPlayer;
-    protected ArrayList<Card> cardsInHand  = new ArrayList<Card>();
+    protected ArrayList<T> cardsInHand  = new ArrayList<T>();
 
     public Player(String nameOfPlayer){
     }
@@ -18,15 +18,15 @@ public class Player{
         this.nameOfPlayer = nameOfPlayer;
     }
 
-    public ArrayList<Card> getCardsInHand() {
+    public ArrayList<T> getCardsInHand() {
         return cardsInHand;
     }
 
-    public void setCardsInHand(ArrayList<Card> cardsInHand) {
+    public void setCardsInHand(ArrayList<T> cardsInHand) {
         this.cardsInHand = cardsInHand;
     }
 
-    public void addCard(Card card){
+    public void addCard(T card){
         cardsInHand.add(card);
     }
 
@@ -36,7 +36,7 @@ public class Player{
 
     public void printCardInHand(){
         System.out.println(nameOfPlayer + "'s cards in hand:");
-        for (Card card : cardsInHand) {
+        for (T card : cardsInHand) {
             System.out.print(card.toString() + " ");
         }
     }
