@@ -1,10 +1,8 @@
 package gamecardbaccarat;
 
-import deckofcards.Card;
 import playerofgame.Player;
 
 public class PlayerBaccarat extends Player {
-    private int scoreOfPlayer ;
     private int moneyPlayer;
 
     public PlayerBaccarat() {
@@ -24,22 +22,14 @@ public class PlayerBaccarat extends Player {
         this.moneyPlayer += moneyPlayer;
     }
 
-    public void addCard(CardOfBaccarat card){
-        cardsInHand.add(card);
-        this.scoreOfPlayer += card.getRank();
-        while (this.scoreOfPlayer > 10)
-            this.scoreOfPlayer -= 10;
-    }
-
     protected boolean compareCard(CardOfBaccarat card1, CardOfBaccarat card2){
         if(card1.getSuit() > card2.getSuit()) return true;
         if(card1.getSuit() < card2.getSuit()) return false;
-        if(card1.getRank() > card2.getRank()) return true;
-        return false;
+        return card1.getRank() > card2.getRank();
     }
 
     public CardOfBaccarat biggestCardInHand(){
-        CardOfBaccarat card = (CardOfBaccarat) cardsInHand.get(0);
+        CardOfBaccarat card = (CardOfBaccarat) cardsInHand.getFirst();
         for(int i = 1; i < cardsInHand.size(); i++){
             CardOfBaccarat cardinhand = (CardOfBaccarat) cardsInHand.get(i);
             if(compareCard(cardinhand, card)){
@@ -50,12 +40,6 @@ public class PlayerBaccarat extends Player {
     }
 
     public void printPlayer(){
-        System.out.println("Player " + this.getNameOfPlayer() + " has " + moneyPlayer + " $");
-    }
-
-    // Tính điểm của người chơi
-    public int getScoreOfPlayer(){
-        CardOfBaccarat biggestCard = biggestCardInHand();
-        return 100 * scoreOfPlayer + 10 * biggestCard.getSuit() + biggestCard.getRank();
+        System.out.println("Player " + this.getNameOfPlayer() + " has " + moneyPlayer + "$");
     }
 }

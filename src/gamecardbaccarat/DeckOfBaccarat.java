@@ -1,10 +1,9 @@
 package gamecardbaccarat;
-import deckofcards.Deck;
 
+import deckofcards.Deck;
 import java.util.ArrayList;
 
 public class DeckOfBaccarat extends Deck {
-
     public DeckOfBaccarat() {
         this.deck = new ArrayList<CardOfBaccarat>();
         String[] suit = {"C", "D", "H", "S"};

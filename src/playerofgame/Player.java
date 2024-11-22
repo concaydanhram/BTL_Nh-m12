@@ -4,7 +4,7 @@ import deckofcards.Card;
 import java.util.ArrayList;
 
 public class Player <T> {
-    public String nameOfPlayer;
+    protected String nameOfPlayer;
     protected ArrayList<T> cardsInHand  = new ArrayList<T>();
 
     public Player(String nameOfPlayer){
@@ -39,5 +39,6 @@ public class Player <T> {
         for (T card : cardsInHand) {
             System.out.print(card.toString() + " ");
         }
+        System.out.println();
     }
 }
