@@ -13,7 +13,6 @@ public class ThirteenS {
         addPlayer();
         dealCard();
         sortCardsInHandPlayer();
-
     }
 
     public void setNumberOfPlayer() {
