@@ -1,18 +1,13 @@
 package gamecardthirteens;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ThirteenS {
-    private int numberOfPlayer;
-    private DeckOfThirteenS deckOfThirteenS = new DeckOfThirteenS();
-    private ArrayList<PlayerThirteenS> playersThirteenS = new ArrayList<PlayerThirteenS>();
+public class ThirteenS extends RulesOfThirteenS {
 
     public ThirteenS() {
         setNumberOfPlayer();
         addPlayer();
         dealCard();
-        sortCardsInHandPlayer();
     }
 
     public void setNumberOfPlayer() {
@@ -25,7 +20,6 @@ public class ThirteenS {
         this.numberOfPlayer = numberOfPersons;
     }
 
-    // Thêm số người chơi vào game
     public void addPlayer(){
         for(int i = 0; i < numberOfPlayer; i++){
             System.out.println("Player " + (i + 1) + ": ");
@@ -36,7 +30,7 @@ public class ThirteenS {
         }
     }
 
-    private void dealCard(){
+    protected void dealCard(){
         deckOfThirteenS.shuffleDeck();
         for(int i = 0; i < 13; ++i){
             System.out.println("Deal cards in turn " + (i + 1) + ": ");
@@ -53,7 +47,7 @@ public class ThirteenS {
             System.out.println("Does " + playersThirteenS.get(i).nameOfPlayer + " want to sort the cards in hand? (Y/N)");
             String choose = scanner.nextLine();
             if(choose.equalsIgnoreCase("Y") || choose.equalsIgnoreCase("y")
-                || choose.equalsIgnoreCase("yes") || choose.equalsIgnoreCase("Yes")){
+                    || choose.equalsIgnoreCase("yes") || choose.equalsIgnoreCase("Yes")){
                 playersThirteenS.get(i).sortCardsInHand();
             }
             playersThirteenS.get(i).printCardInHand();
@@ -65,5 +59,10 @@ public class ThirteenS {
 
     }
 
+    public void turnOfGame(){
+
+    }
+
     private final Scanner scanner = new Scanner(System.in);
+
 }

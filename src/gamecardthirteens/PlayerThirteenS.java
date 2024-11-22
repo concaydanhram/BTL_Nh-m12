@@ -11,12 +11,12 @@ public class PlayerThirteenS extends Player {
         super("Player");
     }
 
-    private int reRank(Card card){
+    public int reRank(Card card){
         if(card.getRank() == 2) return 15;
         return card.getRank();
     }
 
-    private int reSuit(Card card){
+    public int reSuit(Card card){
         if(card.getSuit().equals("H")) return 4;
         if(card.getSuit().equals("D")) return 3;
         if(card.getSuit().equals("C")) return 2;
