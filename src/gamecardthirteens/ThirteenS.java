@@ -88,8 +88,7 @@ public class ThirteenS extends RulesOfThirteenS {
                                 System.out.print(super.playersThirteenS.get(i).getNameOfPlayer() + " plays cards: ");
                                 for(CardOfThirteenS card : cards){
                                     System.out.print(card.printRank() + "-" + card.printSuit() + " ");
-                                    boolean boo = super.playersThirteenS.get(i).dropCard(card);
-                                    System.out.println(boo);
+                                    playersThirteenS.get(i).dropCard(card);
                                 }
                                 System.out.println();
                                 super.playersThirteenS.get(i).printCardInHand();

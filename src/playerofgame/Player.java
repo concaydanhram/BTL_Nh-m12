@@ -1,6 +1,7 @@
 package playerofgame;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Player <T> {
     protected String nameOfPlayer;
@@ -27,8 +28,13 @@ public class Player <T> {
         this.cardsInHand.add(card);
     }
 
-    public boolean dropCard(T card){
-        return this.cardsInHand.remove(card);
+    public void dropCard(T card) { Iterator<T> iterator = cardsInHand.iterator();
+        while (iterator.hasNext()) {
+            T currentCard = iterator.next();
+            if (currentCard.equals(card)) {
+                iterator.remove(); break;
+            }
+        }
     }
 
     public void printCardInHand(){
