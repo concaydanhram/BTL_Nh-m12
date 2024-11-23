@@ -22,9 +22,19 @@ public class ThirteenS extends RulesOfThirteenS {
     public void setNumberOfPlayer() {
         int numberOfPersons ;
         do {
-            System.out.print("Enter number of players: ");
-            numberOfPersons = scanner.nextInt();
-            scanner.nextLine();
+            // Kiểm tra nhập vào đúng định dạng int
+            while (true){
+                System.out.print("Enter number of players: ");
+                if (scanner.hasNextInt()) {
+                    int input = scanner.nextInt();
+                    scanner.nextLine();
+                    numberOfPersons = input;
+                    break;
+                } else {
+                    System.out.println("Invalid format. Please enter an integer.");
+                    scanner.nextLine();
+                }
+            }
         }while (numberOfPersons < 2);
         super.numberOfPlayer = numberOfPersons;
     }
@@ -61,7 +71,7 @@ public class ThirteenS extends RulesOfThirteenS {
                 String getSelection;
                 boolean check = false;
                 while (!check){
-                    System.out.println("Choose 'Skip turn' or 'Sort cards in hand' or 'Play cards in hand'");
+                    System.out.println("Choose 'Skip' or 'Sort' or 'Play cards'");
                     getSelection = scanner.nextLine();
                     if(getSelection.equals("Skip turn")){
                         break;
