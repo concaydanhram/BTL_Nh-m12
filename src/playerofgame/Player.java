@@ -28,18 +28,20 @@ public class Player <T> {
         this.cardsInHand.add(card);
     }
 
-    public void dropCard(T card) { Iterator<T> iterator = cardsInHand.iterator();
+    public void dropCard(T card) {
+        Iterator<T> iterator = cardsInHand.iterator();
         while (iterator.hasNext()) {
             T currentCard = iterator.next();
             if (currentCard.equals(card)) {
-                iterator.remove(); break;
+                iterator.remove();
+                break;
             }
         }
     }
 
     public void printCardInHand(){
         System.out.println(nameOfPlayer + "'s cards in hand:");
-        for (T card : this.cardsInHand) {
+        for (T card : cardsInHand){
             System.out.print(card.toString() + " ");
         }
         System.out.println();

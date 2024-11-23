@@ -45,18 +45,18 @@ public class ThirteenS extends RulesOfThirteenS {
             String name = scanner.nextLine();  // Nhập tên người chơi
             PlayerThirteenS person = new PlayerThirteenS();
             person.setNameOfPlayer(name);
-            super.playersThirteenS.add(person);
+            playersThirteenS.add(person);
         }
     }
 
     protected void dealCard(){
-        super.deckOfThirteenS.shuffleDeck();
+        deckOfThirteenS.shuffleDeck();
         for(int i = 0; i < 13; ++i){
             System.out.println("- Deal cards in turn " + (i + 1) + ": ");
             for(int j = 0; j < numberOfPlayer; ++j){
-                CardOfThirteenS card = (CardOfThirteenS) super.deckOfThirteenS.getCardTop();
-                super.playersThirteenS.get(j).addCard(card);
-                super.playersThirteenS.get(j).printCardInHand();
+                CardOfThirteenS card = (CardOfThirteenS) deckOfThirteenS.getCardTop();
+                playersThirteenS.get(j).addCard(card);
+                playersThirteenS.get(j).printCardInHand();
             }
         }
     }
@@ -66,23 +66,23 @@ public class ThirteenS extends RulesOfThirteenS {
         while (endOfGame() == null) {
             System.out.println("- Turn " + index + ":");
             for (int i = 0; i < numberOfPlayer; i++) {
-                super.playersThirteenS.get(i).printCardInHand();
-                System.out.println(super.playersThirteenS.get(i).getNameOfPlayer() + " invites to choose: ");
+                playersThirteenS.get(i).printCardInHand();
+                System.out.println(playersThirteenS.get(i).getNameOfPlayer() + " invites to choose: ");
                 String getSelection;
                 boolean check = false;
                 while (!check){
                     System.out.println("Choose 'Skip' or 'Sort' or 'Play cards'");
                     getSelection = scanner.nextLine();
-                    if(getSelection.equals("Skip turn")){
+                    if(getSelection.equals("Skip")){
                         break;
                     }
-                    if(getSelection.equals("Sort cards in hand")){
-                        super.playersThirteenS.get(i).sortCardsInHand();
-                        super.playersThirteenS.get(i).printCardInHand();
+                    if(getSelection.equals("Sort")){
+                        playersThirteenS.get(i).sortCardsInHand();
+                        playersThirteenS.get(i).printCardInHand();
                     }
-                    if(getSelection.equals("Play cards in hand")){
+                    if(getSelection.equals("Play cards")){
                         while (true){
-                            ArrayList<CardOfThirteenS> cards = new ArrayList<CardOfThirteenS>();
+                            ArrayList<CardOfThirteenS> cards = new ArrayList<>();
                             System.out.println("Select card (enter in format Rank-Suit, enter 'Play' to play cards)");
                             String selectedCard;
                             while (true){
@@ -95,13 +95,13 @@ public class ThirteenS extends RulesOfThirteenS {
                                 cards.add(card);
                             }
                             if(checkCardsDrop(cards, cardPreTurn)) {
-                                System.out.print(super.playersThirteenS.get(i).getNameOfPlayer() + " plays cards: ");
+                                System.out.print(playersThirteenS.get(i).getNameOfPlayer() + " plays cards: ");
                                 for(CardOfThirteenS card : cards){
                                     System.out.print(card.printRank() + "-" + card.printSuit() + " ");
                                     playersThirteenS.get(i).dropCard(card);
                                 }
                                 System.out.println();
-                                super.playersThirteenS.get(i).printCardInHand();
+                                playersThirteenS.get(i).printCardInHand();
                                 this.cardPreTurn = cards;
                                 check = true;
                                 break;

@@ -2,15 +2,14 @@ package gamecardthirteens;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Scanner;
 
 public class RulesOfThirteenS {
     protected int numberOfPlayer;
     protected DeckOfThirteenS deckOfThirteenS = new DeckOfThirteenS();
-    protected ArrayList<PlayerThirteenS> playersThirteenS = new ArrayList<PlayerThirteenS>();
+    protected ArrayList<PlayerThirteenS> playersThirteenS = new ArrayList<>();
 
     protected ArrayList<CardOfThirteenS> sortCards(ArrayList<CardOfThirteenS> cards) {
-        cards.sort(new Comparator<CardOfThirteenS>() {
+        cards.sort(new Comparator<>() {
             @Override
             public int compare(CardOfThirteenS card1, CardOfThirteenS card2) {
                 int nameCompare = Integer.compare(card1.getRank(), card2.getRank());
@@ -85,14 +84,30 @@ public class RulesOfThirteenS {
     protected boolean checkCardsDrop(ArrayList<CardOfThirteenS> cards,ArrayList<CardOfThirteenS> cardsPreTurn) {
         if(cards.isEmpty()) return false;
         if(cardsPreTurn.isEmpty()) return true;
-        String type = getTypeOfCards(cardsPreTurn);
-        if(!getTypeOfCards(cards).equals(type)) return false;
+        String typeOfCardsPreTurn = getTypeOfCards(cardsPreTurn);
+        String typeOfCards = getTypeOfCards(cards);
+        if(!typeOfCards.equals(typeOfCardsPreTurn)) {
+            if(typeOfCardsPreTurn.equals("Once")){
+                if(cardsPreTurn.getFirst().getRank() != 15) return false;
+                if(typeOfCards.equals("Four-Fold") || typeOfCards.equals("Pine")) return true;
+                return false;
+            }
+            if(typeOfCardsPreTurn.equals("Pine")){
+                if(typeOfCards.equals("Four-Fold")) return true;
+                return false;
+            }
+            if(typeOfCardsPreTurn.equals("Double")){
+                if(cardsPreTurn.getFirst().getRank() != 15) return false;
+                if(typeOfCards.equals("Four-Fold") || (typeOfCards.equals("Pine") && cards.size() >= 8)) return true;
+                return false;
+            }
+        }
         return compareCard(cards, cardsPreTurn);
     }
 
     protected PlayerThirteenS checkWinner(){
         for(int i = 0; i < numberOfPlayer; i++) {
-            ArrayList<CardOfThirteenS> cards = new ArrayList<CardOfThirteenS>();
+            ArrayList<CardOfThirteenS> cards = new ArrayList<>();
             for(int j = 9; j < 13; ++j) {
                 CardOfThirteenS card = (CardOfThirteenS) (playersThirteenS.get(i).getCardsInHand()).get(j);
                 cards.add(card);
@@ -110,6 +125,4 @@ public class RulesOfThirteenS {
         }
         return null;
     }
-
-    private final Scanner scanner = new Scanner(System.in);
 }

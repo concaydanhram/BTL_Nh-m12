@@ -11,7 +11,7 @@ public class PlayerThirteenS extends Player {
         super("Player", cards);
     }
 
-    // Sắp xếp các lá bài trên tay của ngươời chơi
+    // Sắp xếp các lá bài trên tay của người chơi
     public void sortCardsInHand(){
         super.cardsInHand.sort(new Comparator<CardOfThirteenS>() {
             @Override
@@ -21,13 +21,5 @@ public class PlayerThirteenS extends Player {
                 return Integer.compare(card1.getSuit(), card2.getSuit());
             }
         });
-    }
-
-    // So sánh các lá bài theo rank -> suit
-    private boolean compareCard(CardOfThirteenS card1, CardOfThirteenS card2) {
-        if(card1.getRank() > card2.getRank()) return true;
-        if(card1.getRank() < card2.getRank()) return false;
-        if(card1.getSuit() > card2.getSuit()) return true;
-        return false;
     }
 }
