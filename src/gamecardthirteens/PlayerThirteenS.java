@@ -1,6 +1,5 @@
 package gamecardthirteens;
 
-import deckofcards.Card;
 import playerofgame.Player;
 
 import java.util.Comparator;
