@@ -2,16 +2,18 @@ package gamecardthirteens;
 
 import playerofgame.Player;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class PlayerThirteenS extends Player {
     public PlayerThirteenS() {
-        super("Player");
+        ArrayList<CardOfThirteenS> cards = new ArrayList<>();
+        super("Player", cards);
     }
 
     // Sắp xếp các lá bài trên tay của ngươời chơi
     public void sortCardsInHand(){
-        cardsInHand.sort(new Comparator<CardOfThirteenS>() {
+        super.cardsInHand.sort(new Comparator<CardOfThirteenS>() {
             @Override
             public int compare(CardOfThirteenS card1, CardOfThirteenS card2) {
                 int nameCompare = Integer.compare(card1.getRank(), card2.getRank());

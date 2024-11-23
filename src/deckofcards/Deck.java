@@ -12,7 +12,7 @@ public class Deck <T> {
         Collections.shuffle(deck);
     }
 
-    // Lấy ra 1 quân bìa ở trên cùng bộ bài
+    // Lấy ra 1 quân bài ở trên cùng bộ bài
     public T getCardTop() {
         return deck.remove(deck.size() - 1);
     }

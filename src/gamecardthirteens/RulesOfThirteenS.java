@@ -83,8 +83,8 @@ public class RulesOfThirteenS {
     }
 
     protected boolean checkCardsDrop(ArrayList<CardOfThirteenS> cards,ArrayList<CardOfThirteenS> cardsPreTurn) {
-        if(cardsPreTurn.isEmpty()) return true;
         if(cards.isEmpty()) return false;
+        if(cardsPreTurn.isEmpty()) return true;
         String type = getTypeOfCards(cardsPreTurn);
         if(!getTypeOfCards(cards).equals(type)) return false;
         return compareCard(cards, cardsPreTurn);

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ThirteenS extends RulesOfThirteenS {
 
-    private ArrayList<CardOfThirteenS> cardPreTurn = new ArrayList<CardOfThirteenS>();
+    private ArrayList<CardOfThirteenS> cardPreTurn = new ArrayList<>();
 
     public ThirteenS() {
         setNumberOfPlayer();
@@ -26,7 +26,7 @@ public class ThirteenS extends RulesOfThirteenS {
             numberOfPersons = scanner.nextInt();
             scanner.nextLine();
         }while (numberOfPersons < 2);
-        this.numberOfPlayer = numberOfPersons;
+        super.numberOfPlayer = numberOfPersons;
     }
 
     public void addPlayer(){
@@ -35,18 +35,18 @@ public class ThirteenS extends RulesOfThirteenS {
             String name = scanner.nextLine();  // Nhập tên người chơi
             PlayerThirteenS person = new PlayerThirteenS();
             person.setNameOfPlayer(name);
-            playersThirteenS.add(person);
+            super.playersThirteenS.add(person);
         }
     }
 
     protected void dealCard(){
-        deckOfThirteenS.shuffleDeck();
+        super.deckOfThirteenS.shuffleDeck();
         for(int i = 0; i < 13; ++i){
             System.out.println("- Deal cards in turn " + (i + 1) + ": ");
             for(int j = 0; j < numberOfPlayer; ++j){
-                CardOfThirteenS card = (CardOfThirteenS) deckOfThirteenS.getCardTop();
-                playersThirteenS.get(j).addCard(card);
-                playersThirteenS.get(j).printCardInHand();
+                CardOfThirteenS card = (CardOfThirteenS) super.deckOfThirteenS.getCardTop();
+                super.playersThirteenS.get(j).addCard(card);
+                super.playersThirteenS.get(j).printCardInHand();
             }
         }
     }
@@ -56,8 +56,8 @@ public class ThirteenS extends RulesOfThirteenS {
         while (endOfGame() == null) {
             System.out.println("- Turn " + index + ":");
             for (int i = 0; i < numberOfPlayer; i++) {
-                playersThirteenS.get(i).printCardInHand();
-                System.out.println(playersThirteenS.get(i).getNameOfPlayer() + " invites to choose: ");
+                super.playersThirteenS.get(i).printCardInHand();
+                System.out.println(super.playersThirteenS.get(i).getNameOfPlayer() + " invites to choose: ");
                 String getSelection;
                 boolean check = false;
                 while (!check){
@@ -67,8 +67,8 @@ public class ThirteenS extends RulesOfThirteenS {
                         break;
                     }
                     if(getSelection.equals("Sort cards in hand")){
-                        playersThirteenS.get(i).sortCardsInHand();
-                        playersThirteenS.get(i).printCardInHand();
+                        super.playersThirteenS.get(i).sortCardsInHand();
+                        super.playersThirteenS.get(i).printCardInHand();
                     }
                     if(getSelection.equals("Play cards in hand")){
                         while (true){
@@ -85,29 +85,15 @@ public class ThirteenS extends RulesOfThirteenS {
                                 cards.add(card);
                             }
                             if(checkCardsDrop(cards, cardPreTurn)) {
-                                System.out.print(playersThirteenS.get(i).getNameOfPlayer() + " plays cards: ");
+                                System.out.print(super.playersThirteenS.get(i).getNameOfPlayer() + " plays cards: ");
                                 for(CardOfThirteenS card : cards){
-                                    String Suit = "";
-                                    switch (card.getSuit()){
-                                        case 1:
-                                            Suit = "S";
-                                            break;
-                                        case 2:
-                                            Suit = "C";
-                                            break;
-                                        case 3:
-                                            Suit = "D";
-                                            break;
-                                        case 4:
-                                            Suit = "H";
-                                            break;
-                                    }
-                                    System.out.print(card.getRank() + "-" + Suit + " ");
-                                    playersThirteenS.get(i).dropCard(card);
+                                    System.out.print(card.printRank() + "-" + card.printSuit() + " ");
+                                    boolean boo = super.playersThirteenS.get(i).dropCard(card);
+                                    System.out.println(boo);
                                 }
                                 System.out.println();
-                                playersThirteenS.get(i).printCardInHand();
-                                cardPreTurn = cards;
+                                super.playersThirteenS.get(i).printCardInHand();
+                                this.cardPreTurn = cards;
                                 check = true;
                                 break;
                             }

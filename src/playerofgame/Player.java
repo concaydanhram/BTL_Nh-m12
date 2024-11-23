@@ -1,13 +1,12 @@
 package playerofgame;
 
-import deckofcards.Card;
 import java.util.ArrayList;
 
 public class Player <T> {
     protected String nameOfPlayer;
     protected ArrayList<T> cardsInHand;
 
-    public Player(String nameOfPlayer){
+    public Player(String nameOfPlayer, ArrayList<T> cardsInHand) {
         this.nameOfPlayer = nameOfPlayer;
         this.cardsInHand = new ArrayList<>();
     }
@@ -21,15 +20,15 @@ public class Player <T> {
     }
 
     public ArrayList<T> getCardsInHand() {
-        return cardsInHand;
+        return this.cardsInHand;
     }
 
     public void addCard(T card){
         this.cardsInHand.add(card);
     }
 
-    public void dropCard(T card){
-        this.cardsInHand.remove(card);
+    public boolean dropCard(T card){
+        return this.cardsInHand.remove(card);
     }
 
     public void printCardInHand(){
