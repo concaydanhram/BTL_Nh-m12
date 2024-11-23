@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Baccarat extends RulesOfBaccarat {
+
     // Khỏi tạo Constructor: khi khởi tạo 1 đối tượng Baccarat mới sẽ chạy luôn chương trình:
     public Baccarat() {
         setNumberOfPlayer();
@@ -25,6 +26,7 @@ public class Baccarat extends RulesOfBaccarat {
         this.numberOfPlayer = numberOfPersons;
     }
 
+    // Nhập vào số tiền ban đầu cho người chơi
     public void setMoney(){
         System.out.print("Enter each player's starting amount ($): ");
         int money = scanner.nextInt();
@@ -32,7 +34,7 @@ public class Baccarat extends RulesOfBaccarat {
         this.moneyPlayer = money;
     }
 
-    // Thêm số người chơi vào game
+    // Thêm người chơi vào game
     public void addPlayer(){
         for(int i = 0; i < numberOfPlayer; i++){
             System.out.print("Player " + (i + 1) + ": ");
@@ -56,11 +58,12 @@ public class Baccarat extends RulesOfBaccarat {
         }
     }
 
+    // In ra thông tin Người chơi
     public void printPlayerInformation(){
         for(int i = 0; i < numberOfPlayer; ++i){
             playersBaccarat.get(i).printPlayer();
         }
     }
 
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);// Scannner dùng để nhập các giá trị người chơi truyền vào
 }

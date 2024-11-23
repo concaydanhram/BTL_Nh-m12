@@ -1,13 +1,13 @@
 package deckofcards;
 
 public class Card {
-    protected String suit;
-    protected String rank;
+    protected String suit;// Chât của lá bài
+    protected String rank;// Điểm của lá bài
 
-//      ♦ Diamonds : Chất rô
-//      ♥ Hearts : Chất cơ
-//      ♣ Clubs : Chất nhép
-//      ♠ Spade : Chất bích
+//      ♥ H (Hearts) : Chất cơ
+//      ♦ D (Diamonds) : Chất rô
+//      ♣ C (Clubs) : Chất nhép
+//      ♠ S (Spade) : Chất bích
 
     // Constructor
     public Card(String rank, String suit){

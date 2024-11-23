@@ -5,6 +5,8 @@ import deckofcards.Deck;
 import java.util.ArrayList;
 
 public class DeckOfThirteenS extends Deck {
+    // Constructor
+    // Note: Bộ bài 52 lá đầy đủ các chất và điểm
     public DeckOfThirteenS() {
         this.deck = new ArrayList<CardOfThirteenS>();
         String[] suit = {"C", "D", "H", "S"};

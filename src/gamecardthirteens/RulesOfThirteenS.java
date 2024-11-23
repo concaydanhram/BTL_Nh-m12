@@ -5,10 +5,21 @@ import java.util.Scanner;
 import deckofcards.Card;
 
 public class RulesOfThirteenS {
-    protected int numberOfPlayer;
-    protected DeckOfThirteenS deckOfThirteenS = new DeckOfThirteenS();
-    protected ArrayList<PlayerThirteenS> playersThirteenS = new ArrayList<PlayerThirteenS>();
+    protected int numberOfPlayer;//Số người chơi
+    protected DeckOfThirteenS deckOfThirteenS = new DeckOfThirteenS();// Bộ bài
+    protected ArrayList<PlayerThirteenS> playersThirteenS = new ArrayList<PlayerThirteenS>();// Danh sách người chơi
 
+    // Kiểm tra điều kiện kết thúc game : 1 người chơi ko còn lá bài trên tay
+    private boolean endOfGame(ThirteenS thirteenSr){
+        for(int i = 0; i < thirteenSr.numberOfPlayer; i++){
+            if(thirteenSr.playersThirteenS.get(i).getCardsInHand().isEmpty()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Kiểm tra bộ 2,3, tứ quý , sảnh dây
     protected boolean checkDoubleCard(CardOfThirteenS card1, CardOfThirteenS card2) {
         return card1.getRank() == card2.getRank();
     }
@@ -26,15 +37,6 @@ public class RulesOfThirteenS {
             if(cards.get(i).getRank() - cards.get(i-1).getRank() != 1) return false;
         }
         return true;
-    }
-
-    private boolean endOfGame(ThirteenS thirteenSr){
-        for(int i = 0; i < thirteenSr.numberOfPlayer; i++){
-            if(thirteenSr.playersThirteenS.get(i).getCardsInHand().isEmpty()){
-                return true;
-            }
-        }
-        return false;
     }
 
     private final Scanner scanner = new Scanner(System.in);

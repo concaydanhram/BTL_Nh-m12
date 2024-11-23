@@ -4,6 +4,9 @@ import deckofcards.Deck;
 import java.util.ArrayList;
 
 public class DeckOfBaccarat extends Deck {
+
+    // Constructor : Khởi tạo bộ bài Deck của game Baccarat
+    // Note: Loại bỏ các lá J, Q, K
     public DeckOfBaccarat() {
         this.deck = new ArrayList<CardOfBaccarat>();
         String[] suit = {"C", "D", "H", "S"};

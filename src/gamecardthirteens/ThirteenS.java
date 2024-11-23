@@ -56,11 +56,9 @@ public class ThirteenS extends RulesOfThirteenS {
     }
 
     private void reverseCardsInHandPlayer(){
-
     }
 
     public void turnOfGame(){
-
     }
 
     private final Scanner scanner = new Scanner(System.in);
