@@ -53,8 +53,8 @@ public class RulesOfThirteenS {
                 if(typeOfCards.equals("Four-Fold") || typeOfCards.equals("Pine")) return true;
                 return false;
             }
-            if(typeOfCardsPreTurn.equals("Pine")){
-                if(typeOfCards.equals("Four-Fold")) return true;
+            if(typeOfCardsPreTurn.equals("Pine") && cardsPreTurn.size() == 6){
+                if(typeOfCards.equals("Four-Fold") || (typeOfCards.equals("Pine") && cards.size() > 6)) return true;
                 return false;
             }
             if(typeOfCardsPreTurn.equals("Double")){
@@ -62,6 +62,11 @@ public class RulesOfThirteenS {
                 if(typeOfCards.equals("Four-Fold") || (typeOfCards.equals("Pine") && cards.size() >= 8)) return true;
                 return false;
             }
+            if(typeOfCardsPreTurn.equals("Four-Fold")){
+                if(typeOfCards.equals("Pine") && cards.size() > 6) return true;
+                return false;
+            }
+            return false;
         }
         return compareCards(cards, cardsPreTurn);
     }
@@ -81,7 +86,7 @@ public class RulesOfThirteenS {
     }
 
 
-    // Kiểm tra điều kiện kết thúc trò chơi( khi có người hết bài trên tay)
+    // Kiểm tra điều kiện kết thúc trò chơi(khi có người hết bài trên tay)
     protected PlayerThirteenS endOfGame(){
         for(int i = 0; i < numberOfPlayer; i++){
             if(playersThirteenS.get(i).getCardsInHand().isEmpty()){
@@ -115,7 +120,9 @@ public class RulesOfThirteenS {
     }
 
     private boolean checkLobby(ArrayList<CardOfThirteenS> cards) {
+        if(cards.size() < 3) return false;
         cards = sortCards(cards);
+        if(cards.get(cards.size()-1).getRank() == 15) return false;
         for(int i = 1; i < cards.size(); ++i){
             if(cards.get(i).getRank() - cards.get(i-1).getRank() != 1) return false;
         }
@@ -123,7 +130,7 @@ public class RulesOfThirteenS {
     }
 
     private boolean checkPine(ArrayList<CardOfThirteenS> cards) {
-        if(cards.size()%2 == 1) return false;
+        if(cards.size()%2 == 1 || cards.size() < 6) return false;
         cards = sortCards(cards);
         if(cards.get(0).getRank() != cards.get(1).getRank() || cards.get(0).getRank() == 15) return false;
         for(int i = 3; i < cards.size(); i += 2){

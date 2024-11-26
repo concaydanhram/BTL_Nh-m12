@@ -82,14 +82,21 @@ public class ThirteenS extends RulesOfThirteenS {
 
     public boolean playCards(PlayerThirteenS player){
         ArrayList<CardOfThirteenS> cards = new ArrayList<>();
-        System.out.println("Select card (enter in format Rank-Suit, write on one line, separated by spaces) or enter 'Skip' if you want to skip turn");
+        System.out.println("Select card (enter in format Rank-Suit, write on one line, separated by spaces) to play or enter 'Sort' to sort cards in hand or enter 'Skip' to skip turn:");
         String listCardPlayed = scanner.nextLine();
         if(listCardPlayed.equals("Skip")){
             checkSkip = true;
             return true;
         }
+        if(listCardPlayed.equals("Sort")){
+            player.sortCardsInHand();
+        }
         for(String selectedCard : listCardPlayed.split(" ")){
             String[] rankandsuit = selectedCard.split("-");
+            if(rankandsuit.length != 2){
+                System.out.println("Invalid, please select again!");
+                return false;
+            }
             CardOfThirteenS card = new CardOfThirteenS(rankandsuit[0], rankandsuit[1]);
             cards.add(card);
         }
@@ -104,7 +111,7 @@ public class ThirteenS extends RulesOfThirteenS {
             this.cardPreTurn = cards;
             return true;
         }
-        System.out.println("Invalid, please select again!");
+        System.out.println("The cards you played are smaller!");
         return false;
     }
 
