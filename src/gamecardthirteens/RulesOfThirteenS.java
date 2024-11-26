@@ -72,7 +72,7 @@ public class RulesOfThirteenS {
     }
 
     // Kiểm tra người chơi có tứ quý 2 -> thắng
-    protected PlayerThirteenS checkWinner(){
+    protected int checkWinner(){
         for(int i = 0; i < numberOfPlayer; i++) {
             ArrayList<CardOfThirteenS> cards = new ArrayList<>();
             for(int j = 9; j < 13; ++j) {
@@ -80,20 +80,20 @@ public class RulesOfThirteenS {
                 cards.add(card);
             }
             if(checkFourFoldCard(cards) && (cards.get(3).getRank() == 2))
-                return playersThirteenS.get(i);
+                return i;
         }
-        return null;
+        return -1;
     }
 
 
     // Kiểm tra điều kiện kết thúc trò chơi(khi có người hết bài trên tay)
-    protected PlayerThirteenS endOfGame(){
+    protected int endOfGame(){
         for(int i = 0; i < numberOfPlayer; i++){
             if(playersThirteenS.get(i).getCardsInHand().isEmpty()){
-                return playersThirteenS.get(i);
+                return i;
             }
         }
-        return null;
+        return -1;
     }
 
 

@@ -13,8 +13,8 @@ public class ThirteenS extends RulesOfThirteenS {
         setNumberOfPlayer();
         addPlayer();
         dealCard();
-        if(checkWinner() != null){
-            System.out.println(checkWinner().getNameOfPlayer() + " wins the game!");
+        if(checkWinner() != -1){
+            System.out.println(playersThirteenS.get(checkWinner()).getNameOfPlayer() + " wins the game!");
         }
         else{
             turnOfGame();
@@ -119,7 +119,8 @@ public class ThirteenS extends RulesOfThirteenS {
         int index = 1;
         resetTurn();
         System.out.println("- Turn" + index + ":");
-        while (endOfGame() == null) {
+        boolean checkEndGame = false;
+        while (!checkEndGame) {
             for (int i = 0; i < numberOfPlayer; i++) {
                 if(checkTurn[i]){
                     if(checkEndTurn()){
@@ -155,9 +156,13 @@ public class ThirteenS extends RulesOfThirteenS {
                         }
                     }
                 }
+                if(endOfGame() != -1){
+                    checkEndGame = true;
+                    break;
+                }
             }
         }
-        System.out.println(endOfGame().getNameOfPlayer() + "wins the game!");
+        System.out.println(playersThirteenS.get(endOfGame()).getNameOfPlayer() + " wins the game!");
     }
 
     private final Scanner scanner = new Scanner(System.in);
