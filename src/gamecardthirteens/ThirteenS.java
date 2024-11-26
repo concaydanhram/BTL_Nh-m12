@@ -7,6 +7,7 @@ public class ThirteenS extends RulesOfThirteenS {
 
     private ArrayList<CardOfThirteenS> cardPreTurn = new ArrayList<>();
     private boolean[] checkTurn;
+    private boolean checkSkip = false;
 
     public ThirteenS() {
         setNumberOfPlayer();
@@ -81,9 +82,12 @@ public class ThirteenS extends RulesOfThirteenS {
 
     public boolean playCards(PlayerThirteenS player){
         ArrayList<CardOfThirteenS> cards = new ArrayList<>();
-        System.out.println("Select card (enter in format Rank-Suit, write on one line, separated by spaces)");
+        System.out.println("Select card (enter in format Rank-Suit, write on one line, separated by spaces) or enter 'Skip' if you want to skip turn");
         String listCardPlayed = scanner.nextLine();
-        if(listCardPlayed.equals("Skip")) return true;
+        if(listCardPlayed.equals("Skip")){
+            checkSkip = true;
+            return true;
+        }
         for(String selectedCard : listCardPlayed.split(" ")){
             String[] rankandsuit = selectedCard.split("-");
             CardOfThirteenS card = new CardOfThirteenS(rankandsuit[0], rankandsuit[1]);
@@ -134,8 +138,11 @@ public class ThirteenS extends RulesOfThirteenS {
                         if(getSelection.equals("Play")){
                             boolean check = false;
                             while (!check){
-                                boolean checkSkip = false;
                                 check = playCards(playersThirteenS.get(i));
+                                if(checkSkip) {
+                                    checkTurn[i] = false;
+                                    checkSkip = false;
+                                }
                             }
                             break;
                         }
