@@ -100,6 +100,10 @@ public class ThirteenS extends RulesOfThirteenS {
             CardOfThirteenS card = new CardOfThirteenS(rankandsuit[0], rankandsuit[1]);
             cards.add(card);
         }
+        if(getTypeOfCards(cards).equals("Invalid")){
+            System.out.println("Invalid, please select again!");
+            return false;
+        }
         if(checkCardsDrop(cards, cardPreTurn)) {
             System.out.print(player.getNameOfPlayer() + " plays cards: ");
             for(CardOfThirteenS card : cards){
@@ -156,6 +160,7 @@ public class ThirteenS extends RulesOfThirteenS {
                         }
                     }
                 }
+                System.out.println();
                 if(endOfGame() != -1){
                     checkEndGame = true;
                     break;

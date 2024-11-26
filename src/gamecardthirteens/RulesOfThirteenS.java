@@ -33,13 +33,14 @@ public class RulesOfThirteenS {
         return card1s.get(card1s.size()-1).compareCard(card2s.get(card2s.size()-1)) == 1 ;
     }
 
-    private String getTypeOfCards(ArrayList<CardOfThirteenS> cards) {
+    protected String getTypeOfCards(ArrayList<CardOfThirteenS> cards) {
+        if(cards.size() == 1) return "Once";
         if(checkDoubleCard(cards)) return "Double";
         if(checkTripleCard(cards)) return "Triple";
         if(checkFourFoldCard(cards)) return "Four-Fold";
         if(checkLobby(cards)) return "Lobby";
         if(checkPine(cards)) return "Pine";
-        return "Once";
+        return "Invalid";
     }
 
     protected boolean checkCardsDrop(ArrayList<CardOfThirteenS> cards,ArrayList<CardOfThirteenS> cardsPreTurn) {
