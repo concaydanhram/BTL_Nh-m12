@@ -26,13 +26,6 @@ public class Card {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass())
-            return false; CardOfThirteenS card = (CardOfThirteenS) obj;
-        return rank.equals(card.rank) && suit.equals(card.suit);
-    }
-    @Override
     public int hashCode() {
         Objects Objects = null;
         return Objects.hash(rank, suit);
