@@ -6,19 +6,18 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class PlayerThirteenS extends Player {
+
     public PlayerThirteenS() {
         ArrayList<CardOfThirteenS> cards = new ArrayList<>();
         super("Player", cards);
     }
 
-    // Sắp xếp các lá bài trên tay của người chơi
+    // Lặp code
     public void sortCardsInHand(){
         super.cardsInHand.sort(new Comparator<CardOfThirteenS>() {
             @Override
             public int compare(CardOfThirteenS card1, CardOfThirteenS card2) {
-                int nameCompare = Integer.compare(card1.getRank(), card2.getRank());
-                if (nameCompare != 0) return nameCompare;
-                return Integer.compare(card1.getSuit(), card2.getSuit());
+                return card1.compareCard(card2);
             }
         });
     }

@@ -12,10 +12,10 @@ public class ThirteenS extends RulesOfThirteenS {
         addPlayer();
         dealCard();
         if(checkWinner() != null){
-            System.out.println(checkWinner().getNameOfPlayer() + " wins the game!");
+            System.out.println(checkWinner().getNameOfPlayer() + " wins the game!"); // Kiểm tra tứ quý 2
         }
         else{
-            turnOfGame();
+            turnOfGame(); // Chạy game
         }
     }
 
@@ -62,11 +62,14 @@ public class ThirteenS extends RulesOfThirteenS {
     }
 
     public void turnOfGame(){
-        int index = 1;
+        int turn = 1;
         while (endOfGame() == null) {
-            System.out.println("- Turn " + index + ":");
+            System.out.println("- Turn " + turn + ":");
+
+            // Lần lượt từng người chơi đánh ra lá bài trên tay
             for (int i = 0; i < numberOfPlayer; i++) {
                 playersThirteenS.get(i).printCardInHand();
+                // Người chơi chọn lựa 'Skip' - 'Sắp xếp' - 'Đánh bài'
                 System.out.println(playersThirteenS.get(i).getNameOfPlayer() + " invites to choose: ");
                 String getSelection;
                 boolean check = false;
@@ -74,6 +77,7 @@ public class ThirteenS extends RulesOfThirteenS {
                     System.out.println("Choose 'Skip' or 'Sort' or 'Play cards'");
                     getSelection = scanner.nextLine();
                     if(getSelection.equals("Skip")){
+                        this.cardPreTurn = new ArrayList<>();
                         break;
                     }
                     if(getSelection.equals("Sort")){
@@ -85,6 +89,7 @@ public class ThirteenS extends RulesOfThirteenS {
                             ArrayList<CardOfThirteenS> cards = new ArrayList<>();
                             System.out.println("Select card (enter in format Rank-Suit, enter 'Play' to play cards)");
                             String selectedCard;
+
                             while (true){
                                 selectedCard = scanner.nextLine();
                                 if(selectedCard.equals("Play")){
@@ -94,6 +99,7 @@ public class ThirteenS extends RulesOfThirteenS {
                                 CardOfThirteenS card = new CardOfThirteenS(rankandsuit[0], rankandsuit[1]);
                                 cards.add(card);
                             }
+
                             if(checkCardsDrop(cards, cardPreTurn)) {
                                 System.out.print(playersThirteenS.get(i).getNameOfPlayer() + " plays cards: ");
                                 for(CardOfThirteenS card : cards){
@@ -111,8 +117,9 @@ public class ThirteenS extends RulesOfThirteenS {
                     }
                 }
             }
-            index++;
+            turn++;
         }
+        // Kết thúc
         System.out.println(endOfGame().getNameOfPlayer() + "wins the game!");
     }
 
