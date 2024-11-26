@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class ThirteenS extends RulesOfThirteenS {
 
     private ArrayList<CardOfThirteenS> cardPreTurn = new ArrayList<>();
+    private boolean[] checkTurn;
 
     public ThirteenS() {
         setNumberOfPlayer();
@@ -37,6 +38,7 @@ public class ThirteenS extends RulesOfThirteenS {
             }
         }while (numberOfPersons < 2);
         super.numberOfPlayer = numberOfPersons;
+        checkTurn = new boolean[numberOfPlayer];
     }
 
     public void addPlayer(){
@@ -61,57 +63,85 @@ public class ThirteenS extends RulesOfThirteenS {
         }
     }
 
+    public void resetTurn() {
+        for(int i = 0; i < numberOfPlayer; ++i){
+            checkTurn[i] = true;
+        }
+    }
+
+    public boolean checkEndTurn(){
+        int counter = 0;
+        for(int i = 0; i < numberOfPlayer; ++i){
+            if(checkTurn[i]){
+                counter++;
+            }
+        }
+        return counter == 1;
+    }
+
+    public boolean playCards(PlayerThirteenS player){
+        ArrayList<CardOfThirteenS> cards = new ArrayList<>();
+        System.out.println("Select card (enter in format Rank-Suit, write on one line, separated by spaces)");
+        String listCardPlayed = scanner.nextLine();
+        if(listCardPlayed.equals("Skip")) return true;
+        for(String selectedCard : listCardPlayed.split(" ")){
+            String[] rankandsuit = selectedCard.split("-");
+            CardOfThirteenS card = new CardOfThirteenS(rankandsuit[0], rankandsuit[1]);
+            cards.add(card);
+        }
+        if(checkCardsDrop(cards, cardPreTurn)) {
+            System.out.print(player.getNameOfPlayer() + " plays cards: ");
+            for(CardOfThirteenS card : cards){
+                System.out.print(card.printRank() + "-" + card.printSuit() + " ");
+                player.dropCard(card);
+            }
+            System.out.println();
+            player.printCardInHand();
+            this.cardPreTurn = cards;
+            return true;
+        }
+        System.out.println("Invalid, please select again!");
+        return false;
+    }
+
     public void turnOfGame(){
         int index = 1;
+        resetTurn();
+        System.out.println("- Turn" + index + ":");
         while (endOfGame() == null) {
-            System.out.println("- Turn " + index + ":");
             for (int i = 0; i < numberOfPlayer; i++) {
-                playersThirteenS.get(i).printCardInHand();
-                System.out.println(playersThirteenS.get(i).getNameOfPlayer() + " invites to choose: ");
-                String getSelection;
-                boolean check = false;
-                while (!check){
-                    System.out.println("Choose 'Skip' or 'Sort' or 'Play cards'");
-                    getSelection = scanner.nextLine();
-                    if(getSelection.equals("Skip")){
-                        break;
+                if(checkTurn[i]){
+                    if(checkEndTurn()){
+                        index++;
+                        System.out.println("-Turn " + index + " :");
+                        resetTurn();
+                        cardPreTurn.clear();
                     }
-                    if(getSelection.equals("Sort")){
-                        playersThirteenS.get(i).sortCardsInHand();
-                        playersThirteenS.get(i).printCardInHand();
-                    }
-                    if(getSelection.equals("Play cards")){
-                        while (true){
-                            ArrayList<CardOfThirteenS> cards = new ArrayList<>();
-                            System.out.println("Select card (enter in format Rank-Suit, enter 'Play' to play cards)");
-                            String selectedCard;
-                            while (true){
-                                selectedCard = scanner.nextLine();
-                                if(selectedCard.equals("Play")){
-                                    break;
-                                }
-                                String[] rankandsuit = selectedCard.split("-");
-                                CardOfThirteenS card = new CardOfThirteenS(rankandsuit[0], rankandsuit[1]);
-                                cards.add(card);
+                    playersThirteenS.get(i).printCardInHand();
+                    System.out.println(playersThirteenS.get(i).getNameOfPlayer() + " invites to choose: ");
+                    String getSelection;
+                    while (true){
+                        System.out.println("Choose 'Skip' or 'Sort' or 'Play'");
+                        getSelection = scanner.nextLine();
+                        if(getSelection.equals("Skip")){
+                            checkTurn[i] = false;
+                            break;
+                        }
+                        if(getSelection.equals("Sort")){
+                            playersThirteenS.get(i).sortCardsInHand();
+                            playersThirteenS.get(i).printCardInHand();
+                        }
+                        if(getSelection.equals("Play")){
+                            boolean check = false;
+                            while (!check){
+                                boolean checkSkip = false;
+                                check = playCards(playersThirteenS.get(i));
                             }
-                            if(checkCardsDrop(cards, cardPreTurn)) {
-                                System.out.print(playersThirteenS.get(i).getNameOfPlayer() + " plays cards: ");
-                                for(CardOfThirteenS card : cards){
-                                    System.out.print(card.printRank() + "-" + card.printSuit() + " ");
-                                    playersThirteenS.get(i).dropCard(card);
-                                }
-                                System.out.println();
-                                playersThirteenS.get(i).printCardInHand();
-                                this.cardPreTurn = cards;
-                                check = true;
-                                break;
-                            }
-                            else System.out.println("Invalid, please select again!");
+                            break;
                         }
                     }
                 }
             }
-            index++;
         }
         System.out.println(endOfGame().getNameOfPlayer() + "wins the game!");
     }
