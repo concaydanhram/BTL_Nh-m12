@@ -20,14 +20,6 @@ public class Player<T> {
 		this.cardsInHand.add(card);
 	}
 
-	public boolean checkCardInHand(T card) {
-		for (T cardOfPlayer : cardsInHand) {
-			if (!cardOfPlayer.equals(card))
-				return false;
-		}
-		return true;
-	}
-
 	public void dropCard(T card) {
 		Iterator<T> iterator = cardsInHand.iterator();
 		while (iterator.hasNext()) {

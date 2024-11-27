@@ -131,8 +131,9 @@ public class ThirteenS extends RulesOfThirteenS {
 				return false;
 			}
 			CardOfThirteenS card = new CardOfThirteenS(rankandsuit[0], rankandsuit[1]);
-			if (player.checkCardInHand(card))
+			if ((player.getCardsInHand()).contains(card)) {
 				cards.add(card);
+			}
 			else {
 				System.out.println("Invalid, please select again!");
 				return false;
