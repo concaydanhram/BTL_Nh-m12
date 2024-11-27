@@ -9,17 +9,18 @@ import java.util.Scanner;
 public class PlayerThirteenS extends Player {
 	protected String getSelection;
 	protected String listCardPlayed;
+	private RulesOfThirteenS rules = new RulesOfThirteenS();
 
 	public PlayerThirteenS(String name) {
 		ArrayList<CardOfThirteenS> cards = new ArrayList<>();
 		super(name, cards);
 	}
 
-	public String getGetSelection() {
+	public String getSelection(ArrayList<CardOfThirteenS> cardsPreTurn) {
 		return getSelection;
 	}
 
-	public void setGetSelection() {
+	public void setSelection() {
 		this.getSelection = scanner.nextLine();
 	}
 
@@ -31,14 +32,8 @@ public class PlayerThirteenS extends Player {
 		this.listCardPlayed = scanner.nextLine();
 	}
 
-	// Lặp code
 	public void sortCardsInHand() {
-		super.cardsInHand.sort(new Comparator<CardOfThirteenS>() {
-			@Override
-			public int compare(CardOfThirteenS card1, CardOfThirteenS card2) {
-				return card1.compareCard(card2);
-			}
-		});
+		super.cardsInHand = rules.sortCards(super.cardsInHand);
 	}
 
 	private final Scanner scanner = new Scanner(System.in);

@@ -1,6 +1,7 @@
 package gamecardthirteens;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ThirteenS extends RulesOfThirteenS {
@@ -77,6 +78,7 @@ public class ThirteenS extends RulesOfThirteenS {
 			PlayerThirteenS bot = new BotThirteenS(nameOfBot);
 			playersThirteenS.add(bot);
 		}
+		Collections.shuffle(playersThirteenS);
 	}
 
 	protected void dealCard() {
@@ -180,8 +182,8 @@ public class ThirteenS extends RulesOfThirteenS {
 					String getSelection;
 					while (true) {
 						System.out.println("Choose 'Skip' or 'Sort' or 'Play'");
-						playersThirteenS.get(i).setGetSelection();
-						getSelection = playersThirteenS.get(i).getGetSelection();
+						playersThirteenS.get(i).setSelection();
+						getSelection = playersThirteenS.get(i).getSelection(cardPreTurn);
 						if (getSelection.equals("Skip")) {
 							checkTurn[i] = false;
 							break;
