@@ -4,12 +4,31 @@ import playerofgame.Player;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class PlayerThirteenS extends Player {
+    protected String getSelection;
+    protected String listCardPlayed;
 
-    public PlayerThirteenS() {
+    public PlayerThirteenS(String name) {
         ArrayList<CardOfThirteenS> cards = new ArrayList<>();
-        super("Player", cards);
+        super(name, cards);
+    }
+
+    public String getGetSelection() {
+        return getSelection;
+    }
+
+    public void setGetSelection() {
+        this.getSelection = scanner.nextLine();
+    }
+
+    public String getListCardPlayed() {
+        return listCardPlayed;
+    }
+
+    public void setListCardPlayed() {
+        this.listCardPlayed = scanner.nextLine();
     }
 
     // Lặp code
@@ -21,4 +40,6 @@ public class PlayerThirteenS extends Player {
             }
         });
     }
+
+    private final Scanner scanner = new Scanner(System.in);
 }

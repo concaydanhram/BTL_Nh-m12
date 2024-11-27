@@ -8,6 +8,8 @@ public class RulesOfThirteenS {
     protected DeckOfThirteenS deckOfThirteenS = new DeckOfThirteenS();
     protected ArrayList<PlayerThirteenS> playersThirteenS = new ArrayList<>();
 
+    public RulesOfThirteenS(){
+    }
 
     protected ArrayList<CardOfThirteenS> sortCards(ArrayList<CardOfThirteenS> cards) {
         cards.sort(new Comparator<>() {
@@ -41,6 +43,10 @@ public class RulesOfThirteenS {
         if(checkLobby(cards)) return "Lobby";
         if(checkPine(cards)) return "Pine";
         return "Invalid";
+    }
+
+    public String typeOfCards(ArrayList<CardOfThirteenS> cards) {
+        return getTypeOfCards(cards);
     }
 
     protected boolean checkCardsDrop(ArrayList<CardOfThirteenS> cards,ArrayList<CardOfThirteenS> cardsPreTurn) {
@@ -101,13 +107,13 @@ public class RulesOfThirteenS {
     // Kiểm tra bộ đôi, bộ 3 , tứ , thông , sảnh ...
     private boolean checkDoubleCard(ArrayList<CardOfThirteenS> cards) {
         if(cards.size() != 2) return false;
-        return cards.get(0) == cards.get(1);
+        return cards.get(0).getRank() == cards.get(1).getRank();
     }
 
     private boolean checkTripleCard(ArrayList<CardOfThirteenS> cards) {
         if(cards.size() != 3) return false;
         for(int i = 0; i < 2; ++i){
-            if(cards.get(i) != cards.get(i+1)) return false;
+            if(cards.get(i).getRank() != cards.get(i+1).getRank()) return false;
         }
         return true;
     }
@@ -115,7 +121,7 @@ public class RulesOfThirteenS {
     private boolean checkFourFoldCard(ArrayList<CardOfThirteenS> cards) {
         if(cards.size() != 4) return false;
         for(int i = 0; i < 3; ++i){
-            if(cards.get(i) != cards.get(i+1)) return false;
+            if(cards.get(i).getRank() != cards.get(i+1).getRank()) return false;
         }
         return true;
     }

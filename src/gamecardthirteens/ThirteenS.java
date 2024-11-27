@@ -8,6 +8,7 @@ public class ThirteenS extends RulesOfThirteenS {
     private ArrayList<CardOfThirteenS> cardPreTurn = new ArrayList<>();
     private boolean[] checkTurn;
     private boolean checkSkip = false;
+    private int numberOfPersons, numberOfBots;
 
     public ThirteenS() {
         setNumberOfPlayer();
@@ -21,8 +22,7 @@ public class ThirteenS extends RulesOfThirteenS {
         }
     }
 
-    public void setNumberOfPlayer() {
-        int numberOfPersons ;
+    public void setNumberOfPersons(){
         do {
             // Kiểm tra nhập vào đúng định dạng int
             while (true){
@@ -33,22 +33,50 @@ public class ThirteenS extends RulesOfThirteenS {
                     numberOfPersons = input;
                     break;
                 } else {
-                    System.out.println("Invalid format. Please enter an integer.");
+                    System.out.println("Invalid format");
                     scanner.nextLine();
                 }
             }
-        }while (numberOfPersons < 2);
-        super.numberOfPlayer = numberOfPersons;
+        }while (numberOfPersons > 4);
+    }
+
+    public void setNumberOfBots(){
+        do {
+            // Kiểm tra nhập vào đúng định dạng int
+            while (true){
+                System.out.print("Enter number of bot: ");
+                if (scanner.hasNextInt()) {
+                    int input = scanner.nextInt();
+                    scanner.nextLine();
+                    numberOfBots = input;
+                    break;
+                } else {
+                    System.out.println("Invalid format");
+                    scanner.nextLine();
+                }
+            }
+        }while (numberOfPersons + numberOfBots > 4 && numberOfPersons + numberOfBots < 2);
+    }
+
+    public void setNumberOfPlayer() {
+        setNumberOfPersons();
+        setNumberOfBots();
+        super.numberOfPlayer = this.numberOfPersons + this.numberOfBots;
         checkTurn = new boolean[numberOfPlayer];
     }
 
     public void addPlayer(){
-        for(int i = 0; i < numberOfPlayer; i++){
+        for(int i = 0; i < numberOfPersons; i++){
             System.out.print("Player " + (i + 1) + ": ");
-            String name = scanner.nextLine();  // Nhập tên người chơi
-            PlayerThirteenS person = new PlayerThirteenS();
-            person.setNameOfPlayer(name);
+            String nameOfPerson = scanner.nextLine();  // Nhập tên người chơi
+            PlayerThirteenS person = new PlayerThirteenS(nameOfPerson);
+            person.setNameOfPlayer(nameOfPerson);
             playersThirteenS.add(person);
+        }
+        for(int i = 0; i < numberOfBots; i++){
+            String nameOfBot = "Bot " + Integer.toString(i + 1);
+            PlayerThirteenS bot = new BotThirteenS(nameOfBot);
+            playersThirteenS.add(bot);
         }
     }
 
@@ -83,7 +111,8 @@ public class ThirteenS extends RulesOfThirteenS {
     public boolean playCards(PlayerThirteenS player){
         ArrayList<CardOfThirteenS> cards = new ArrayList<>();
         System.out.println("Select card (enter in format Rank-Suit, write on one line, separated by spaces) to play or enter 'Sort' to sort cards in hand or enter 'Skip' to skip turn:");
-        String listCardPlayed = scanner.nextLine();
+        player.setListCardPlayed();
+        String listCardPlayed = player.getListCardPlayed();
         if(listCardPlayed.equals("Skip")){
             checkSkip = true;
             return true;
@@ -138,7 +167,8 @@ public class ThirteenS extends RulesOfThirteenS {
                     String getSelection;
                     while (true){
                         System.out.println("Choose 'Skip' or 'Sort' or 'Play'");
-                        getSelection = scanner.nextLine();
+                        playersThirteenS.get(i).setGetSelection();
+                        getSelection = playersThirteenS.get(i).getGetSelection();
                         if(getSelection.equals("Skip")){
                             checkTurn[i] = false;
                             break;
