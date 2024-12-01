@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.MenuController">
+   <children>
+      <VBox alignment="CENTER" layoutX="450.0" layoutY="51.0" prefHeight="498.0" prefWidth="296.0" spacing="50.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#baccaratPushed" prefHeight="90.0" prefWidth="150.0" text="BACCARAT">
+               <font>
+                  <Font name="MV Boli" size="15.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#thirteensPushed" prefHeight="90.0" prefWidth="150.0" text="THIRTEENS">
+               <font>
+                  <Font name="MV Boli" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <StackPane prefHeight="147.0" prefWidth="778.0">
+         <children>
+            <Label text="Báo cáo nhóm 12">
+               <font>
+                  <Font name="MV Boli" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

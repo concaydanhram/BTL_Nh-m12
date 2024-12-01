@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class PlayerThirteenS extends Player {
+	public String nameOfPlayer;
 	protected String getSelection;
 	protected String listCardPlayed;
 	private RulesOfThirteenS rules = new RulesOfThirteenS();
@@ -16,7 +17,7 @@ public class PlayerThirteenS extends Player {
 		super(name, cards);
 	}
 
-	public String getSelection(ArrayList<CardOfThirteenS> cardsPreTurn) {
+    public String getSelection(ArrayList<CardOfThirteenS> cardsPreTurn) {
 		return getSelection;
 	}
 

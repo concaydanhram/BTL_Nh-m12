@@ -1,11 +1,14 @@
 package deckofcards;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Deck<T> {
 	protected ArrayList<T> deck;
+	protected Image backOfCard;
 
 	// Phương thức xáo trộn bộ bài
 	public void shuffleDeck() {

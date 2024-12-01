@@ -1,69 +1,71 @@
 package gamecardbaccarat;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class Baccarat extends RulesOfBaccarat {
+public class Baccarat {
+    private static Baccarat instance;
+    private int numberOfPlayer;
+    private DeckOfBaccarat deckOfBaccarat = new DeckOfBaccarat();
+    private ArrayList<PlayerBaccarat> playersBaccarat = new ArrayList<>();
 
-	// Khỏi tạo Constructor: khi khởi tạo 1 đối tượng Baccarat mới sẽ chạy luôn chương trình
-	public Baccarat() {
-		setNumberOfPlayer();
-		setMoney();
-		addPlayer();
-		dealCard();
-		winnerBaccarat();
-		printPlayerInformation();
-	}
+    public static Baccarat getInstance() {
+        if (instance == null) {
+            instance = new Baccarat();
+        }
+        return instance;
+    }
 
-	// Lấy số lượng người chơi
-	public void setNumberOfPlayer() {
-		int numberOfPersons;
-		do {
-			System.out.print("Enter number of players: ");
-			numberOfPersons = scanner.nextInt();
-			scanner.nextLine();
-		} while (numberOfPersons < 2);
-		this.numberOfPlayer = numberOfPersons;
-	}
+    // Thiết lập số lượng người chơi
+    public void setNumberOfPlayer(int a) {
+        numberOfPlayer = a;
+    }
 
-	// Nhập vào số tiền ban đầu cho người chơi
-	public void setMoney() {
-		System.out.print("Enter each player's starting amount ($): ");
-		int money = scanner.nextInt();
-		scanner.nextLine();
-		this.moneyPlayer = money;
-	}
+    // Thêm người chơi vào game
+    public void addPlayer(int startingMoney) {
+        for (int i = 1; i <= numberOfPlayer; i++) {
+            String playerName = "Player" + i;
+            PlayerBaccarat person = new PlayerBaccarat();
+            person.setNameOfPlayer(playerName);
+            person.setMoneyPlayer(startingMoney); // Gán tiền khởi điểm cho mỗi người chơi
+            playersBaccarat.add(person);
+        }
+    }
 
-	// Thêm người chơi vào game
-	public void addPlayer() {
-		for (int i = 0; i < numberOfPlayer; i++) {
-			System.out.print("Player " + (i + 1) + ": ");
-			String name = scanner.nextLine();  // Nhập tên người chơi
-			PlayerBaccarat person = new PlayerBaccarat();
-			person.setNameOfPlayer(name);
-			person.setMoneyPlayer(this.moneyPlayer);
-			playersBaccarat.add(person);
-		}
-	}
+    // Lấy danh sách người chơi
+    public ArrayList<PlayerBaccarat> getPlayersBaccarat() {
+        return playersBaccarat;
+    }
 
-	// Chia bài cho người chơi
-	public void dealCard() {
-		deckOfBaccarat.shuffleDeck();
-		for (int i = 0; i < 3; ++i) {
-			System.out.println("- Deal cards in turn " + (i + 1) + ": ");
-			for (int j = 0; j < numberOfPlayer; ++j) {
-				playersBaccarat.get(j).addCard(deckOfBaccarat.getCardTop());
-				playersBaccarat.get(j).printCardInHand();
-			}
-		}
-	}
+    // Chia bài cho người chơi
+    public void dealCard() {
+        for (PlayerBaccarat player : playersBaccarat) {
+            player.clearCardsInHand();
+        }
+        deckOfBaccarat.shuffleDeck();
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < numberOfPlayer; ++j) {
+                playersBaccarat.get(j).addCard(deckOfBaccarat.getCardTop());
+                playersBaccarat.get(j).printCardInHand();
+            }
+        }
+        deckOfBaccarat.resetDeck();
+    }
 
-	// In ra thông tin Người chơi
-	public void printPlayerInformation() {
-		for (int i = 0; i < numberOfPlayer; ++i)
-			playersBaccarat.get(i).printPlayer();
-	}
 
-	// Scannner dùng để nhập các giá trị người chơi truyền vào
-	private Scanner scanner = new Scanner(System.in);
+    // Làm mới trò chơi
+    public void resetGame() {
+        // Khởi tạo lại bộ bài
+        deckOfBaccarat.resetDeck();
+
+        // Làm sạch bài trong tay mỗi người chơi
+        for (PlayerBaccarat player : playersBaccarat) {
+            player.clearCardsInHand();
+        }
+    }
+
+    // Lấy số lượng người chơi
+    public int getNumberOfPlayer() {
+        return numberOfPlayer;
+    }
+
 }

@@ -1,12 +1,14 @@
 package deckofcards;
 
 import gamecardthirteens.CardOfThirteenS;
+import javafx.scene.image.Image;
 
 import java.util.Objects;
 
 public class Card {
 	protected String suit;// Chât của lá bài
 	protected String rank;// Điểm của lá bài
+	protected Image image;// Ảnh của lá bài
 
 //      ♥ H (Hearts) : Chất cơ
 //      ♦ D (Diamonds) : Chất rô
@@ -27,8 +29,10 @@ public class Card {
 
 	@Override
 	public int hashCode() {
-		Objects Objects = null;
 		return Objects.hash(rank, suit);
 	}
 
+	public String getCardName() {
+		return this.rank + "-" + this.suit;
+	}
 }

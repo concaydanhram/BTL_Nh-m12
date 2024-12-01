@@ -27,4 +27,6 @@ public class CardOfBaccarat extends Card {
             return 2;
 		return 1;
 	}
+
+
 }
